@@ -1,0 +1,153 @@
+# ============================== 服务配置 ============================== #
+server:
+  port: 8888
+  max-http-header-size: 8192
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain
+  session:
+    timeout: 7200
+  servlet:
+    session:
+      timeout: PT120M
+
+# ============================== spring 开始 ============================== #
+spring:
+  # ============================= datasource ============================= #
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: 123456
+    driverClassName: org.postgresql.Driver
+    platform: postgres
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialization-mode: always
+
+    # ============================== druid ============================== #
+    druid:
+      # 最大活跃数
+      maxActive: 300
+      # 初始化数量
+      initialSize: 5
+      # 最大连接等待超时时间
+      maxWait: 60000
+      minIdle: 1
+      # 是否开启PSCache，PSCache对支持游标的数据库性能提升巨大
+      poolPreparedStatements: true
+      # 开启poolPreparedStatements后生效
+      maxPoolPreparedStatementPerConnectionSize: 20
+      # 通过connectionProperties属性来打开mergeSql功能；慢SQL记录
+      #connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      # 间隔多久才进行一次检测，检测需要关闭的空闲连接
+      timeBetweenEvictionRunsMillis: 60000
+      # 每个连接在池中最小生存的时间
+      minEvictableIdleTimeMillis: 300000
+      # 测试连接
+      validationQuery: select version()
+      # 申请连接的时候检测，建议配置为true，不影响性能，并且保证安全性
+      testWhileIdle: true
+      # 获取连接时执行检测，建议关闭，影响性能
+      testOnBorrow: false
+      # 归还连接时执行检测，建议关闭，影响性能
+      testOnReturn: false
+      # 监控统计拦截的filters，去掉后监控界面sql将无法统计,'wall'用于防火墙
+      filters: stat, wall, log4j2
+      # 配置日志输出
+      filter:
+        slf4j:
+          enabled: true
+          statement-create-after-log-enabled: false
+          statement-close-after-log-enabled: false
+          result-set-open-after-log-enabled: false
+          result-set-close-after-log-enabled: false
+
+  # ============================= jackson ============================= #
+  jackson:
+    # 日期格式化
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    # 属性为 空（””） 或者为 NULL 都不序列化
+    defaultPropertyInclusion: NON_EMPTY
+    serialization:
+      # 时间戳使用数值timestamp表示日期
+      write-dates-as-timestamps: false
+      # 格式化输出
+      indent_output: true
+      # 忽略无法转换的对象
+      fail_on_empty_beans: false
+    deserialization:
+      # 忽略json中不存在的属性
+      fail_on_unknown_properties: false
+    parser:
+      # 允许出现特殊字符和转义符
+      allow_unquoted_control_chars: true
+      # 允许出现单引号
+      allow_single_quotes: true
+      # 允许属性名称没有引号
+      allow_unquoted_field_names: true
+
+  # ============================= mvc ============================= #
+  mvc:
+#    # 配置服务映射路径前缀，默认为“/”
+#    static-path-pattern: /**
+    date-format: yyyy-MM-dd HH:mm:ss
+    async:
+      request-timeout: 15
+  # 前端静态资源
+  resources:
+    # 指定访问路径
+#    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+#    static-locations: file:/usr/app/service/demo/web/
+    static-locations: file:E:/Workspace/IntelliJ IDEA/demo/src/web/
+  # 文件上传
+  multipart:
+    enabled: false
+    location: E://download/
+    max-file-size: 10MB
+    max-request-size: 11MB
+
+  # ============================= redis ============================= #
+  redis:
+    host: 127.0.0.1
+    password:
+    port: 6379
+    timeout: 10000
+
+# ============================== spring 结束 ============================== #
+
+# ============================= 文件 ============================= #
+file:
+  data:
+    #    path: /usr/app/service/demo/data/
+    path: E:/Workspace/IntelliJ IDEA/demo/src/data/
+  upload:
+    #    path: /usr/app/service/demo/download/
+    path: E://download/
+  release: release.json
+
+# ============================= 日志 ============================= #
+logging:
+  config: classpath:log4j2.yml
+  level:
+    org.springframework.boot.autoconfigure: ERROR
+  # 自定义切面拦截方法名
+  ascept:
+    method: delete,remove,update,modify,set,import,export
+
+# ============================= 系统环境 ============================== #
+system:
+  test-environment: true
+
+# ============================= 格式 ============================= #
+format:
+  grid: 4326
+
+# ============================= 缓存 ============================= #
+cache:
+  prefix: "demo:"
+  tag:
+    prefix: "tag:"
+    root-code: "root"
+  menu:
+    prefix: "menu"
+    root-code: "root"

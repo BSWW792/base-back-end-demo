@@ -1,0 +1,45 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.5.RELEASE'
+	id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'wtf'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/snapshot' }
+	maven { url 'https://repo.spring.io/milestone' }
+}
+
+configurations {
+	// 移除所有默认的日志模块
+	all*.exclude module: 'spring-boot-starter-logging'
+	all*.exclude module: 'logback-classic'
+	all*.exclude module: 'log4j-over-slf4j'
+}
+
+dependencies {
+	// Spring
+	implementation 'org.springframework.boot:spring-boot-starter-integration' // 基础套件，aop等
+	implementation 'org.springframework.boot:spring-boot-starter-web' // web服务相关，mvc等
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc' // 数据库访问操作相关
+	implementation 'org.springframework.boot:spring-boot-starter-log4j2' // 日志处理打印
+	implementation 'org.springframework.boot:spring-boot-starter-data-redis' // redis
+	testImplementation 'org.springframework.boot:spring-boot-starter-test' // 测试相关
+
+	// 无须配置版本的依赖
+	implementation 'com.fasterxml.jackson.core:jackson-databind' // 读取json文件
+	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml' // 读取yml文件
+	implementation 'org.postgresql:postgresql' // postgreSQL驱动
+	implementation 'org.projectlombok:lombok' // POLO注解
+
+	// 需要配置版本的依赖
+	implementation 'com.lmax:disruptor:3.4.2' // 配合log4j2的异步日志打印功能
+	implementation 'com.alibaba:druid-spring-boot-starter:1.1.17' // druid数据源
+	implementation 'io.springfox:springfox-swagger2:2.9.2' // swagger API文档功能
+	implementation 'io.springfox:springfox-swagger-ui:2.9.2' // swagger 文档界面
+}
