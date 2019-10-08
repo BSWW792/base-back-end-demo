@@ -21,9 +21,6 @@ import wtf.demo.service.UserService;
 @Slf4j
 public class UserApi extends BaseApi<User> {
 
-    @Value("${system.test-environment}")
-    private boolean testEnvironment = false;
-
     @Autowired
     private UserService userService;
 

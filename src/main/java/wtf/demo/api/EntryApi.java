@@ -68,6 +68,7 @@ public class EntryApi {
 		catch (Exception e) {
 			log.error(e.getMessage(), e);
             if(testEnvironment) e.printStackTrace();
+            return WebUtil.resultMsg(ReturnStatusType.Error, "");
 		}
 		return WebUtil.resultMsg(ReturnStatusType.NoData, "请填写帐号密码!!!");
 	}
@@ -112,6 +113,7 @@ public class EntryApi {
 		catch (Exception e) {
 			log.error(e.getMessage(), e);
             if(testEnvironment) e.printStackTrace();
+            return WebUtil.resultMsg(ReturnStatusType.Error, "");
 		}
 		return WebUtil.resultMsg(ReturnStatusType.Error, "注册失败!!!");
 	}
@@ -146,6 +148,7 @@ public class EntryApi {
 		catch (Exception e) {
 			log.error(e.getMessage(), e);
             if(testEnvironment) e.printStackTrace();
+            return WebUtil.resultMsg(ReturnStatusType.Error, "");
 		}
 		return WebUtil.resultMsg(ReturnStatusType.NoData, "请填写帐号密码!!!");
 	}

@@ -11,6 +11,7 @@ import wtf.demo.core.pagination.Sortable;
 import wtf.demo.core.util.DataUtil;
 import wtf.demo.core.util.JacksonUtil;
 import wtf.demo.core.util.WebUtil;
+import wtf.demo.entity.Enum.ReturnStatusType;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -26,7 +27,7 @@ import java.util.Map;
 public abstract class BaseApi<T extends Base> {
 
     @Value("${system.test-environment}")
-    private boolean testEnvironment = false;
+    protected boolean testEnvironment = false;
 
     // 实体类名
     private Class<T> entityClass;
@@ -49,6 +50,7 @@ public abstract class BaseApi<T extends Base> {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             if(testEnvironment) e.printStackTrace();
+            return WebUtil.resultMsg(ReturnStatusType.Error, "");
         }
         return WebUtil.resultData(result);
     }
@@ -63,6 +65,7 @@ public abstract class BaseApi<T extends Base> {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             if(testEnvironment) e.printStackTrace();
+            return WebUtil.resultMsg(ReturnStatusType.Error, "");
         }
         return WebUtil.resultData(result);
     }
@@ -78,6 +81,7 @@ public abstract class BaseApi<T extends Base> {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             if(testEnvironment) e.printStackTrace();
+            return WebUtil.resultMsg(ReturnStatusType.Error, "");
         }
         return WebUtil.resultData(result);
     }
@@ -92,6 +96,7 @@ public abstract class BaseApi<T extends Base> {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             if(testEnvironment) e.printStackTrace();
+            return WebUtil.resultMsg(ReturnStatusType.Error, "");
         }
         return WebUtil.resultData(result);
     }
@@ -106,6 +111,7 @@ public abstract class BaseApi<T extends Base> {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             if(testEnvironment) e.printStackTrace();
+            return WebUtil.resultMsg(ReturnStatusType.Error, "");
         }
         return WebUtil.resultData(result);
     }
@@ -120,6 +126,7 @@ public abstract class BaseApi<T extends Base> {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             if(testEnvironment) e.printStackTrace();
+            return WebUtil.resultMsg(ReturnStatusType.Error, "");
         }
         return WebUtil.resultData(result);
     }
@@ -137,6 +144,7 @@ public abstract class BaseApi<T extends Base> {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             if(testEnvironment) e.printStackTrace();
+            return WebUtil.resultMsg(ReturnStatusType.Error, "");
         }
         return WebUtil.resultData(result);
     }
@@ -155,6 +163,7 @@ public abstract class BaseApi<T extends Base> {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             if(testEnvironment) e.printStackTrace();
+            return WebUtil.resultMsg(ReturnStatusType.Error, "");
         }
         return WebUtil.resultData(result);
     }
@@ -178,6 +187,7 @@ public abstract class BaseApi<T extends Base> {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             if(testEnvironment) e.printStackTrace();
+            return WebUtil.resultMsg(ReturnStatusType.Error, "");
         }
         return WebUtil.resultData(result);
     }
@@ -196,6 +206,7 @@ public abstract class BaseApi<T extends Base> {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             if(testEnvironment) e.printStackTrace();
+            return WebUtil.resultMsg(ReturnStatusType.Error, "");
         }
         return WebUtil.resultData(result);
     }
@@ -219,6 +230,7 @@ public abstract class BaseApi<T extends Base> {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             if(testEnvironment) e.printStackTrace();
+            return WebUtil.resultMsg(ReturnStatusType.Error, "");
         }
         return WebUtil.resultData(result);
     }

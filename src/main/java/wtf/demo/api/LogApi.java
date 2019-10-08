@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import wtf.demo.core.base.BaseApi;
 import wtf.demo.core.util.WebUtil;
+import wtf.demo.entity.Enum.ReturnStatusType;
 import wtf.demo.entity.bean.Log;
 import wtf.demo.service.LogService;
 
@@ -25,9 +26,6 @@ import wtf.demo.service.LogService;
 @RestController
 @Slf4j
 public class LogApi extends BaseApi<Log> {
-
-    @Value("${system.test-environment}")
-    private boolean testEnvironment = false;
 
     @Autowired
     private LogService logService;
@@ -43,6 +41,7 @@ public class LogApi extends BaseApi<Log> {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             if(testEnvironment) e.printStackTrace();
+            return WebUtil.resultMsg(ReturnStatusType.Error, "");
         }
         return WebUtil.resultData(result);
     }

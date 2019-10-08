@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import wtf.demo.core.base.BaseApi;
+import wtf.demo.core.util.DataUtil;
 import wtf.demo.core.util.WebUtil;
+import wtf.demo.entity.Enum.ReturnStatusType;
 import wtf.demo.entity.bean.Tag;
 import wtf.demo.service.TagService;
 
@@ -22,9 +24,6 @@ import wtf.demo.service.TagService;
 @RestController
 @Slf4j
 public class TagApi extends BaseApi<Tag> {
-
-    @Value("${system.test-environment}")
-    private boolean testEnvironment = false;
 
     @Autowired
     private TagService tagService;
@@ -40,6 +39,7 @@ public class TagApi extends BaseApi<Tag> {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             if(testEnvironment) e.printStackTrace();
+            return WebUtil.resultMsg(ReturnStatusType.Error, "");
         }
         return WebUtil.resultData(result);
     }
@@ -54,6 +54,7 @@ public class TagApi extends BaseApi<Tag> {
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             if(testEnvironment) e.printStackTrace();
+            return WebUtil.resultMsg(ReturnStatusType.Error, "");
         }
         return WebUtil.resultData(result);
     }
