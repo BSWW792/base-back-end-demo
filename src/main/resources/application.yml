@@ -99,6 +99,10 @@ spring:
 #    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
 #    static-locations: file:/usr/app/service/demo/web/
     static-locations: file:E:/Workspace/IntelliJ IDEA/demo/src/web/
+  # http 配置
+  http:
+    multipart:
+      location: E://data/upload_tmp
   # 文件上传
   multipart:
     enabled: false
